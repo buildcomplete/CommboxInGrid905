@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="CommboxInGrid905.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CommboxInGrid905"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <local:Converter x:Key="converter"/>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="vertical"  FontSize="25" Margin="10"/>
+
+            <!--<Grid>-->
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>-->
+            <ComboBox HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.WeaponCountRange}" SelectedItem="{x:Bind ViewModel.WeaponCount, Converter={StaticResource converter}, Mode=TwoWay}"></ComboBox>
+            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.Weapons}" SelectedItem="{x:Bind ViewModel.SelectedWeapon, Converter={StaticResource converter}, Mode=TwoWay}" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="Black">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding ImageFile}" Stretch="Uniform" Height="48"></Image>
+                                    <TextBlock Foreground="Yellow" Height="48" VerticalAlignment="Stretch" Text="{Binding Name}"></TextBlock>
+                                </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <!--</Grid>-->
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="horizontal"  FontSize="20" Margin="10"/>
+
+            <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.WeaponCountRange}" SelectedItem="{x:Bind ViewModel.WeaponCount, Converter={StaticResource converter}, Mode=TwoWay}"></ComboBox>
+            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" ItemsSource="{x:Bind ViewModel.Weapons}" SelectedItem="{x:Bind ViewModel.SelectedWeapon, Converter={StaticResource converter}, Mode=TwoWay}"  >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="Black">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding ImageFile}" Stretch="Uniform" Height="48"></Image>
+                                <TextBlock Foreground="Yellow" Height="48" VerticalAlignment="Stretch" Text="{Binding Name}"></TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>
